@@ -60,9 +60,7 @@ int main(int argc, char *argv[]){
     int sketch_size = atoi(argv[1]);
     int data_num = atoi(argv[2]);
     int rep_num = atoi(argv[3]);
-    string file_prefix = argv[4];
-    string file_suffix = ".txt";
-    string file_name = file_prefix + file_suffix;
+    string file_name = argv[4];
 
     int index = 0;
     double* data = new double[data_num];
