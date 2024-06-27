@@ -8,9 +8,9 @@
 
 using namespace std;
 
-int register_size = 8;
+// int register_size = 8;
 
-void qs_proc(double sketch_size, double* data, int data_num)
+void qs_proc(double sketch_size, double* data, int data_num, int register_size)
 {
 
     QSketch qs(sketch_size, register_size);
@@ -47,7 +47,7 @@ void fe_proc(double sketch_size, double* data, int data_num)
     cout << "FastExp Results: " << fe.estimated_card << endl;
 }
 
-void qdyn_proc(double sketch_size, double *data, int data_num)
+void qdyn_proc(double sketch_size, double *data, int data_num, int register_size)
 {
     QDyn qdyn(sketch_size, register_size, 0);
     qdyn.Update(data, data_num);
@@ -61,6 +61,7 @@ int main(int argc, char *argv[]){
     int data_num = atoi(argv[2]);
     int rep_num = atoi(argv[3]);
     string file_name = argv[4];
+    int register_size = atoi(argv[5]);
 
     int index = 0;
     double* data = new double[data_num];
@@ -75,8 +76,8 @@ int main(int argc, char *argv[]){
         cout << "No such files !!!" << endl;
     }
 
-    qs_proc(sketch_size, data, data_num);
-    qdyn_proc(sketch_size, data, data_num);
+    qs_proc(sketch_size, data, data_num, register_size);
+    qdyn_proc(sketch_size, data, data_num, register_size);
     fg_proc(sketch_size, data, data_num);
     fe_proc(sketch_size, data, data_num);
     lm_proc(sketch_size, data, data_num);
